@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="input" placeholder="Введіть запит" />
+    <form>
+      <label for="input">Введіть список слів-підказок через кому</label>
+      <input
+        type="text"
+        id="input-list"
+        placeholder="Іван,футбол,колбек,вихід"
+      />
+    </form>
+    <input id="butt" type="button" value="Підтвердити" /><br /><br /><br />
+    <select id="select"></select>
+    <script>
+      let wordList = [];
+      let select = document.getElementById("select");
+
+      input.oninput = function () {
+        let word = document.getElementById("input").value;
+        document.getElementById("select").innerHTML = "";
+        for (let i = 0; i < wordList.length; i++) {
+          const option = document.createElement("option");
+
+          if (word === wordList[i].slice(0, word.length)) {
+            option.textContent = option.value = wordList[i];
+            document.getElementById("select").append(option);
+          }
+        }
+      };
+
+      butt.onclick = function () {
+        wordList = wordList.concat(
+          document.getElementById("input-list").value.split(",")
+        );
+        document.getElementById("select").innerHTML = "";
+      };
+
+      select.addEventListener("change", function () {
+        document.getElementById("input").value = this.value;
+      });
+    </script>
+  </body>
+</html>
